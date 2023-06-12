@@ -21,4 +21,18 @@ const questions = [{
   
     }];
 
-   
+   // Function to write SVG file
+   function writeToFile(fileName, data) {
+    const content = generateMarkdown(data);
+  
+    fs.writeFile(fileName, content, (err) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(`SVG file "${fileName}" has been created.`);
+      }
+    });
+  }
+
+
+
