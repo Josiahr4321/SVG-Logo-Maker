@@ -21,7 +21,7 @@ const questions = [{
   
     }];
 
-   // Function to write SVG file
+    // Function to write SVG file
    function writeToFile(fileName, data) {
     const content = generateMarkdown(data);
   
@@ -35,4 +35,9 @@ const questions = [{
   }
 
 
-
+//Function to initialize app
+function init() { inquirer.prompt(questions).then((answers) => {
+    writeToFile('SVG', answers);
+    });}
+    
+    init();
