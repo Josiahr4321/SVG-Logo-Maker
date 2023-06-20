@@ -1,4 +1,4 @@
-const { Format, Circle, Triangle, Square } = require('./utils/shapes');
+const { Format, Circle, Triangle, Square } = require('./shapes');
 const fs = require('fs');
 const inquirer = require('inquirer');
 
@@ -20,18 +20,23 @@ const questions = [
     name: 'shape',
     choices: ['circle', 'triangle', 'square'],
   },
+  {
+    type: 'input',
+    message: 'Enter the text-color for the logo:',
+    name: 'textColor',
+  }
 ];
 
 // Create a function to generate the SVG logo markup based on the selected shape
-function generateLogo(color, text, shape) {
+function generateLogo(color, text, shape, textColor) {
   let logo;
 
   if (shape === 'circle') {
-    logo = new Circle(color, text);
+    logo = new Circle(color, text, textColor);
   } else if (shape === 'triangle') {
-    logo = new Triangle(color, text);
+    logo = new Triangle(color, text, textColor);
   } else if (shape === 'square') {
-    logo = new Square(color, text);
+    logo = new Square(color, text, textColor);
   }
 
   if (logo) {
@@ -55,8 +60,8 @@ function writeLogoToFile(fileName, content) {
 // Create a function to initialize the app
 function init() {
   inquirer.prompt(questions).then((answers) => {
-    const { color, text, shape } = answers;
-    const logoContent = generateLogo(color, text, shape);
+    const { color, text, shape, textColor } = answers;
+    const logoContent = generateLogo(color, text, shape, textColor);
     writeLogoToFile('logo.svg', logoContent);
   });
 }
