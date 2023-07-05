@@ -27,6 +27,7 @@ const questions = [
   }
 ];
 
+
 // Create a function to generate the SVG logo markup based on the selected shape
 function generateLogo(color, text, shape, textColor) {
   let logo;
@@ -46,18 +47,36 @@ function generateLogo(color, text, shape, textColor) {
   return '';
 }
 
-// Create a function to write the SVG logo file
+
+
+
+// Create a function to write the SVG logo file and open it in a browser
 function writeLogoToFile(fileName, content) {
   fs.writeFile(fileName, content, (err) => {
     if (err) {
       console.error(err);
     } else {
       console.log(`SVG logo file "${fileName}" has been created.`);
+
+      // Open the SVG file in a web browser
+      const { exec } = require('child_process');
+      const os = require('os');
+      const platform = os.platform();
+      
+      if (platform === 'darwin') {
+        exec(`open -a "Safari" ${fileName}`);
+      } else if (platform === 'win32') {
+        exec(`start microsoft-edge:${fileName}`);
+      } else if (platform === 'linux') {
+        exec(`xdg-open ${fileName}`);
+      }
     }
   });
 }
 
-// Create a function to initialize the app
+
+
+
 function init() {
   inquirer.prompt(questions).then((answers) => {
     const { color, text, shape, textColor } = answers;
