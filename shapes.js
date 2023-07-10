@@ -19,7 +19,7 @@ class Triangle extends Format {
   generate() {
       return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
           <polygon points="105,20 20,200 200,199" fill="${this.color}" />
-          <text x="110" y="190" font-size="15" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
+          <text x="110" y="190" font-size="40" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
         </svg>`;
   }
 }
@@ -29,7 +29,7 @@ class Square extends Format {
       return `
         <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg>
           <rect width="400" height="400" style="fill:${this.color};stroke-width:10;stroke:${this.textColor}" text="${this.text}" />
-          <text x="110" y="190" font-size="15" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
+          <text x="110" y="190" font-size="40" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
         </svg>
       `;
   }
